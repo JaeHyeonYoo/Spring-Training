@@ -14,7 +14,7 @@ public class Order {
         this.discountPrice = discountPrice;
     }
 
-    int discountPrice(){
+    int calculatePrice(){
         return itemPrice - discountPrice;
     }
 
@@ -57,7 +57,7 @@ public class Order {
                 ", 커피종류 = '" + itemName + '\'' +
                 ", 커피가격 = " + itemPrice +
                 ", 할인가격 = " + discountPrice +
-                ", 최종가격 = " + discountPrice() +
+                ", 최종가격 = " + calculatePrice() +
                 '}';
     }
 }
