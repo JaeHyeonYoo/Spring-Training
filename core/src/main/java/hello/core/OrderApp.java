@@ -15,9 +15,8 @@ public class OrderApp {
         Member member = new Member(memberId,"memberA",Grade.VIP);  // 회원가입 정보입력
         memberService.join(member); //회원가입 진행
 
-        Order order = orderService.createOrder(member.getId(), "아메리카노",10000);  //주문정보 전달
+        Order order = orderService.createOrder(member.getId(), "아바라",10000);  //주문정보 전달
 
         System.out.println("주문정보 = " + order);
-
     }
 }
