@@ -8,8 +8,9 @@ import hello.core.order.OrderServiceImpl;
 public class OrderApp {
     public static void main(String[] args) {
 
-        OrderService orderService = new OrderServiceImpl();     //주문을 하기 위함
-        MemberService memberService = new MemberServiceImpl();  //회원가입을 위함
+        AppConfig appConfig = new AppConfig();
+        OrderService orderService = appConfig.orderService();   //주문을 하기 위함
+        MemberService memberService = appConfig.memberService();  //회원가입을 위함
 
         Long memberId = 1L;
         Member member = new Member(memberId,"memberA",Grade.VIP);  // 회원가입 정보입력
