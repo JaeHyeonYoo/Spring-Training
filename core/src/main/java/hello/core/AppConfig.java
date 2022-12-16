@@ -22,7 +22,7 @@ public class AppConfig {
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
     public DiscountPolicy discountPolicy(){
-        //return new FixDiscountPolicy();
+        //return new FixDiscountPolicy();  //구현 객체 변경하기
         return new RateDiscountPolicy();   //구현체를 변경할 때는 AppConfig 만 수정하면된다.
     }
 }
