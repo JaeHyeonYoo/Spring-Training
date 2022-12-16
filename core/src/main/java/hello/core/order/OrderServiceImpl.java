@@ -10,7 +10,7 @@ import hello.core.member.MemoryMemberRepository;
 public class OrderServiceImpl implements OrderService {
 
     MemberRepository memberRepository;
-    //DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    //DiscountPolicy discountPolicy = new FixDiscountPolicy(); 의존성 주입하기
     DiscountPolicy discountPolicy;
 
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
