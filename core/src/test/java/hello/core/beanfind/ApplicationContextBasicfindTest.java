@@ -39,6 +39,7 @@ public class ApplicationContextBasicfindTest {
     @Test
     @DisplayName("빈 이름으로 조회하기 안될 때")
     void findBeanByNameX(){
+
 //        MemberService memberService = ac.getBean("oooo", MemberService.class);
 //      ㅇㅇㅇㅇ 라는 이름의 빈을 불러냈을 때 존재하지 않아 NoSuchBeanDefinitionException 에러가 발생하게된다.
         assertThrows(NoSuchBeanDefinitionException.class,
