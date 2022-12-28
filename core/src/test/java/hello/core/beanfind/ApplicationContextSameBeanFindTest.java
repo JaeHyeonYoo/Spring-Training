@@ -22,10 +22,8 @@ public class ApplicationContextSameBeanFindTest {
     @Test
     @DisplayName("같은 타입 조회 시 중복되면 오류가 발생한다.")
     void findBeanByTypeDuplication(){
-
         assertThrows(NoUniqueBeanDefinitionException.class,
             () -> ac.getBean(MemberRepository.class));
-
     }
     @Test
     @DisplayName("같은 타입 조회 시 중복이될 때 빈 이름을 지정해주면 된다.")
