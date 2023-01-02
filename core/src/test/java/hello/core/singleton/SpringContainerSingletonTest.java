@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import static org.assertj.core.api.Assertions.*;
+
 public class SpringContainerSingletonTest {
     @Test
     @DisplayName("스프링 컨테이너와 싱글톤")
@@ -21,6 +23,6 @@ public class SpringContainerSingletonTest {
         System.out.println("memberService1 = " + memberService1);
         System.out.println("memberService2 = " + memberService2);
 
-        Assertions.assertThat(memberService1).isSameAs(memberService2);
+        assertThat(memberService1).isSameAs(memberService2);
     }
 }
