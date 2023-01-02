@@ -28,7 +28,17 @@ public class ConfigurationSingletonTest {
 
         Assertions.assertThat(memberRepository1).isSameAs(memberRepository);
         Assertions.assertThat(memberRepository2).isSameAs(memberRepository);
+    }
 
+    @Test
+    void ConfigurationDeep(){
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
+        AppConfig bean = ac.getBean(AppConfig.class);
+        System.out.println("bean = " + bean.getClass());
+        //@Configuration이 내부적으로 동작하여 AppConfig의 자식인 AppConfig@CGLIP 이 생성된다.
+        //이런 기능 덕에 싱글톤을 유지할 수 있게된다.
+        //@Bean만 사용해도 스프링 빈으로 등록은 되지만 싱글톤은 보장해주지 못한다.
+        //설정정보에는 웬만해서 @Configuration을 사용하자.
     }
 }
