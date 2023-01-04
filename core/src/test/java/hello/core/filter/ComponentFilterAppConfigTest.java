@@ -22,7 +22,7 @@ public class ComponentFilterAppConfigTest {
         BeanA beanA = ac.getBean("beanA", BeanA.class);
         Assertions.assertThat(beanA).isNotNull(); //ComponentScan에서 설정을 했기 때문에 MyIncludeComponent 는 null 이 아니어야한다.
 
-        //ComponentScan에서 설정을 통해 등록이되지 않았다.
+        //ComponentScan에서 설정을 통해 Spring Bean 에등록이되지 않았다.
         assertThrows(
                 NoSuchBeanDefinitionException.class, () ->
                         ac.getBean("beanB", BeanB.class));
