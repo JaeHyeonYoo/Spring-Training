@@ -16,7 +16,7 @@ public class OrderServiceImpl implements OrderService {
     //DiscountPolicy discountPolicy = new FixDiscountPolicy(); 의존성 주입하기
     private final DiscountPolicy discountPolicy;
 
-    @Autowired  //생성자 주입하기. 불변, 필수 의존관계에 사용. 생성자가 만약 딱 1개가 있다면 @Autowired 를 생략해도 주입이된다. !단 스프링 빈만 해당!
+        @Autowired  //생성자 주입하기. 불변, 필수 의존관계에 사용. 생성자가 만약 딱 1개가 있다면 @Autowired 를 생략해도 주입이된다. !단 스프링 빈만 해당!
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
