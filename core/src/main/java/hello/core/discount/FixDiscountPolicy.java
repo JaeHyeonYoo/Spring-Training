@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 // 만약 @Primary 와 @Qualifier 애너테이션이 같이 지정된다면 우선권은 @Qualifier 에게 있다.
 
 @Component
-@MainDiscountPolicy //@Qualifier 를 재정의한 Annotation 을 사용 == @Qualifier("mainDiscountPolicy") 오타 방지 효과
+@MainDiscountPolicy //@Qualifier 를 재정의한 Annotation 을 사용 == @Qualifier("mainDiscountPolicy") 오타 방지 효기
 public class FixDiscountPolicy implements DiscountPolicy{
 
     private int discountFixAmount = 1000; // 1000원 할인w
