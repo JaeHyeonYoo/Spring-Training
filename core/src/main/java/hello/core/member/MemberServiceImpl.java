@@ -24,6 +24,7 @@ public class MemberServiceImpl implements MemberService{
 //    public MemberServiceImpl(MemberRepository memberRepository) {
 //        System.out.println("1. memberRepository = " + memberRepository);
 //        this.memberRepository = memberRepository;
+
 //    }
 
     @Override

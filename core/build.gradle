@@ -28,7 +28,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
-	//추가완료
+	// 추가완료
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
