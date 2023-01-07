@@ -21,16 +21,14 @@ public class AllBean {
     void findAllBean(){
         ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class, DiscountService.class);
 
-        DiscountService discountService = ac.getBean(DiscountService.class);
-        Member member = new Member(1L,"meberA", Grade.VIP);
-        int fixDiscountPolicy = discountService.discount(member,1000, "fixDiscountPolicy");
-        int rateDiscountPolicy = discountService.discount(member,20000, "rateDiscountPolicy");
+        DiscountService bean = ac.getBean(DiscountService.class);
+        Member member = new Member(1L,"memberA",Grade.VIP);
 
-
-
-        assertThat(discountService).isInstanceOf(DiscountService.class);
+        int fixDiscountPolicy = bean.discount(member, 1000, "fixDiscountPolicy");
         assertThat(fixDiscountPolicy).isEqualTo(1000);
-        assertThat(rateDiscountPolicy).isEqualTo(2000);
+
+        int rateDiscountPolicy = bean.discount(member, 30000, "rateDiscountPolicy");
+        assertThat(rateDiscountPolicy).isEqualTo(3000);
     }
 
     static class DiscountService{
@@ -41,18 +39,14 @@ public class AllBean {
         public DiscountService(Map<String, DiscountPolicy> policyMap, List<DiscountPolicy> policies) {
             this.policyMap = policyMap;
             this.policies = policies;
+
             System.out.println("policyMap = " + policyMap);
             System.out.println("policies = " + policies);
         }
 
-        public int discount(Member member, int price, String discountPolicy) {
-
+        int discount(Member member, int price, String discountPolicy){
             DiscountPolicy discountPolicy1 = policyMap.get(discountPolicy);
-
-            System.out.println("discountPolicy = " + discountPolicy);
-            System.out.println("discountPolicy1 = " + discountPolicy1);
-
-            return discountPolicy1.discount(member,price);
+            return discountPolicy1.discount(member, price);
         }
     }
 }
