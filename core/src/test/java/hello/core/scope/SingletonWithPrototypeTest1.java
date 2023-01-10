@@ -5,12 +5,14 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Provider;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -44,7 +46,7 @@ public class SingletonWithPrototypeTest1 {
 
         ClientBean clientBean2 = ac.getBean(ClientBean.class);
         System.out.println("clientBean2 = " + clientBean2);
-        assertThat(clientBean2.logic()).isEqualTo(2);
+        assertThat(clientBean2.logic()).isEqualTo(1);
 
         ac.close();
     }
@@ -52,23 +54,18 @@ public class SingletonWithPrototypeTest1 {
 
     static class ClientBean{
 
-        private final PrototypeBean prototypeBean;
+//        private final PrototypeBean prototypeBean;
+        @Autowired
+        private Provider<PrototypeBean> prototypeBeanProvider;
 
-        public ClientBean(PrototypeBean prototypeBean) {  // 이때 스프링 빈을 만들어 반환해주고 프로토타입이기 때문에 앞으로 관리는 싱글톤에서 한다.
-            this.prototypeBean = prototypeBean;
-        }
+//        public ClientBean(PrototypeBean prototypeBean) {  // 이때 스프링 빈을 만들어 반환해주고 프로토타입이기 때문에 앞으로 관리는 싱글톤에서 한다.
+//            this.prototypeBean = prototypeBean;
+//        }
 
         public int logic(){
+            PrototypeBean prototypeBean = prototypeBeanProvider.get();
             prototypeBean.addCount();
             return prototypeBean.getCount();
-        }
-        @PostConstruct
-        public void init(){
-            System.out.println("ClientBean.init");
-        }
-        @PreDestroy
-        public void destroy(){
-            System.out.println("ClientBean.destroy");
         }
     }
 
@@ -86,7 +83,7 @@ public class SingletonWithPrototypeTest1 {
         }
         @PostConstruct
         public void init(){
-            System.out.println("PrototypeBean.init");
+            System.out.println("PrototypeBean.init "+ this);
         }
         @PreDestroy
         public void destroy(){
