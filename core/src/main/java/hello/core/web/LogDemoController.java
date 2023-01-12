@@ -14,15 +14,17 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 public class LogDemoController {
 
-    private final ObjectProvider<MyLogger> myLoggerProvider;  // request 호출이 없는 상태에서 주입이 일어나려 하기 때문에 에러발생.
+    //private final ObjectProvider<MyLogger> myLoggerProvider;  // request 호출이 없는 상태에서 주입이 일어나려 하기 때문에 에러발생.
+    private final MyLogger myLogger;
     private final LogDemoService logDemoService;
+
 
     @RequestMapping("log-demo")
     @ResponseBody
     public String logDemo(HttpServletRequest request){
         String requestURL = request.getRequestURL().toString();
-
-        MyLogger myLogger = myLoggerProvider.getObject();  //이곳에서 DL을 해주기 때문에 가능하다.
+        System.out.println("myLogger = "+myLogger.getClass()); //EnhancerBySpringCGLIB 우리가 만든 것이 아님을 알 수 있다.
+        //MyLogger myLogger = myLoggerProvider.getObject();  //이곳에서 DL을 해주기 때문에 가능하다.
         myLogger.setRequestURL(requestURL);
 
         myLogger.log("controller-test");

@@ -1,6 +1,7 @@
 package hello.core.common;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -8,7 +9,8 @@ import javax.annotation.PreDestroy;
 import java.util.UUID;
 
 @Component
-@Scope(value = "request")
+//@Scope("request") 2개 이상의 파라미터를 넣기 위해 앞에 value 를 넣어줘야한다.
+@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS) //TARGET.CLASS 가짜 MyLogger 를 만들어준다.
 public class MyLogger {
 
     private String uuid;
